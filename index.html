@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Q4 Answer</title>
+</head>
+<body>
+
+<!-- Added form element with action and method attributes -->
+<form action="http://www.deitel.com" method="POST">
+
+<!-- A table will be created to organize all data input fields to make it user friendly--> 
+<table>
+<tbody>
+<h1>Favorite Masjid Location in Sharjah</h1>
+
+<tr>
+<td><label for = "mail"> Email: </label></td>
+<td><input name = "email" type = "email" size ="25" id = "mail"></td>
+</tr>
+
+<tr>
+<td><label for = "phone">Phone number:</label></td>
+<td><input name = "phone"id = "phone" type = "tel" placeholder = "+971-XXX-XXXXXXX"  pattern="\+971-[0-9]{3}-[0-9]{7}" size = "25"></td>
+</tr>
+
+<tr>
+<td><label for = "pass">Password:</label></td>
+<td><input name = "password" type = "password" size ="25" id = "pass"></td>
+</tr>
+
+<tr>
+<td><label for = "locations">Favorite Masjid Location:</label></td>
+<td><select id = "locations" name = "locations">
+<option selected> Al Noor Mosque </option>
+<option> Al Hoda Mosque </option>
+<option> King Faisal Mosque </option>
+<option> Sharjah Mosque </option>
+<option> Sahaba Mosque </option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td><label for="date">Date:</label></td>
+<td><input type="date" id="date" name="date"></td>
+</tr>
+
+<tr>
+<td>Preferred Masjid Type:</td>
+<td>
+<input type = "radio"  id = "indoor" name = "type">
+<label for = "indoor">Indoor</label>
+
+<input type = "radio"  id = "outdoor" name = "type">
+<label for = "outdoor">Outdoor</label>
+</td>
+</tr>
+
+<tr>
+<td>Additional Preferences:</td>
+
+<td>
+<input type = "checkbox" id = "Sheikh" name = "pref">
+<label for = "Sheikh">Sheikh Access</label>
+
+<input type = "checkbox" id = "parking" name = "pref">
+<label for = "parking">Valet Parking</label>
+
+<input type = "checkbox" id = "wudo" name = "pref">
+<label for = "wudo">Private Wudo</label>
+</td>
+</tr>
+
+<tr>
+<td><label for="comment">Extra comments:</label></td>
+<td><textarea name = "comments" id = "comment" rows = "4" cols = "50"></textarea></td>
+</tr>
+
+<tr>
+<td><input type = "submit" value = "Submit">
+
+<input type = "reset" value = "Reset"></td>
+</tr>
+
+
+
+</tbody>
+</table>
+</form>
+</body>
+</html>
