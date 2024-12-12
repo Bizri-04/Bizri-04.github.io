@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Checker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #2e8b57;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        header nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .dropdown {
+            display: inline-block;
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: #2e8b57;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #2e8b57;
+            color: white;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: #2e8b57;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group label {
+            display: inline-block;
+            width: 150px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+        }
+
+        button {
+            background-color: #2e8b57;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #246b48;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2e8b57;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f4f4f9;
+        }
+
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        footer {
+            background-color: #2e8b57;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            position: relative;
+            margin-top: 40px;
+        }
+
+        footer .contact-info {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        /* Add these new dark mode styles */
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .dark-mode .container {
+            background-color: #2d2d2d;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .input-group {
+            background-color: #2d2d2d;
+            color: #ffffff;
+        }
+
+        .dark-mode input {
+            background-color: #3d3d3d;
+            color: #ffffff;
+            border-color: #4d4d4d;
+        }
+
+        .dark-mode .result {
+            background-color: #2d2d2d;
+        }
+
+        .dark-mode table tr:nth-child(even) {
+            background-color: #3d3d3d;
+        }
+
+        .dark-mode table tr:hover {
+            background-color: #4d4d4d;
+        }
+
+        /* Toggle Switch Styling */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .theme-switch {
+            display: inline-block;
+            height: 34px;
+            position: relative;
+            width: 60px;
+        }
+
+        .theme-switch input {
+            display: none;
+        }
+
+        .slider {
+            background-color: #ccc;
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            background-color: #fff;
+            bottom: 4px;
+            content: "";
+            height: 26px;
+            left: 4px;
+            position: absolute;
+            transition: .4s;
+            width: 26px;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2e8b57;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .theme-switch-wrapper em {
+            margin-left: 10px;
+            font-size: 1rem;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="home.html">Home</a>
+            <div class="dropdown">
+                <a href="#">Portfolio ↓</a>
+                <div class="dropdown-content">
+                    <a href="mohammad.html">Mohammad Tarek</a>
+                    <a href="jamil.html">Jamil Bizri</a>
+                    <a href="abdelghani.html">Abdelghani Masad</a>
+                    <a href="ahmad.html">Ahmad Allan</a>
+                </div>
+            </div>
+            <a href="checker.html">GPA Checker</a>
+        </nav>
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox" />
+                <div class="slider"></div>
+            </label>
+            <em>Dark Mode</em>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>GPA Checker</h1>
+        
+        <div class="input-group">
+            <label for="userGpa">Enter your current GPA:</label>
+            <input type="number" id="userGpa" step="0.01" min="0" max="4" required>
+        </div>
+
+        <div id="courseInputs">
+            <h3>Enter your 5 courses and grades (0-100):</h3>
+        </div>
+
+        <button onclick="calculateAndCompare()">Compare GPAs</button>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <footer>
+        <div class="contact-info">
+            <p>University of Sharjah - Computer Science Department</p>
+            <p>GPA Comparison System</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create input fields for 5 courses
+        const courseInputs = document.getElementById('courseInputs');
+        for (let i = 1; i <= 5; i++) {
+            courseInputs.innerHTML += `
+                <div class="input-group">
+                    <label for="course${i}">Course ${i} Name:</label>
+                    <input type="text" id="course${i}" required>
+                    <label for="grade${i}">Grade:</label>
+                    <input type="number" id="grade${i}" min="0" max="100" required>
+                </div>
+            `;
+        }
+
+        // Predefined student data
+        const students = [
+            {
+                name: "Jamil",
+                gpa: 2.7,
+                courses: [
+                    { name: "Web Programming", grade: 91 },
+                    { name: "Information Security", grade: 94 },
+                    { name: "Topics in Cs", grade: 83 },
+                    { name: "Senior Project", grade: 90 },
+                    { name: "Cloud Computing", grade: 77 }
+                ]
+            },
+            {
+                name: "Ahmad Allan",
+                gpa: 3.1,
+                courses: [
+                    { name: "Web Programming", grade: 86 },
+                    { name: "Information Security", grade: 90 },
+                    { name: "Topics in Cs", grade: 95 },
+                    { name: "Senior Project", grade: 82 },
+                    { name: "Cloud Computing", grade: 74 }
+                ]
+            },
+            {
+                name: "Mohammad Tarek",
+                gpa: 3.3,
+                courses: [
+                    { name: "Web Programming", grade: 95 },
+                    { name: "Information Security", grade: 89 },
+                    { name: "Topics in Cs", grade: 93 },
+                    { name: "Senior Project", grade: 85 },
+                    { name: "Cloud Computing", grade: 79 }
+                ]
+            },
+            {
+                name: "Abdelghani",
+                gpa: 3.5,
+                courses: [
+                    { name: "Web Programming", grade: 95 },
+                    { name: "Information Security", grade: 88 },
+                    { name: "Topics in Cs", grade: 92 },
+                    { name: "Senior Project", grade: 85 },
+                    { name: "Cloud Computing", grade: 90 }
+                ]
+            }
+        ];
+
+        function calculateAndCompare() {
+            // Get user input
+            const userGpa = parseFloat(document.getElementById('userGpa').value);
+            const userCourses = [];
+            
+            // Validate user input
+            if (isNaN(userGpa) || userGpa < 0 || userGpa > 4) {
+                alert("Please enter a valid GPA between 0 and 4");
+                return;
+            }
+
+            // Collect course data
+            for (let i = 1; i <= 5; i++) {
+                const courseName = document.getElementById(`course${i}`).value;
+                const grade = parseInt(document.getElementById(`grade${i}`).value);
+                
+                if (!courseName || isNaN(grade) || grade < 0 || grade > 100) {
+                    alert("Please fill in all courses and grades correctly");
+                    return;
+                }
+
+                userCourses.push({ name: courseName, grade: grade });
+            }
+
+            // Create combined ranking including user
+            const allStudents = [...students, {
+                name: "You",
+                gpa: userGpa,
+                courses: userCourses
+            }];
+
+            // Sort by GPA (descending)
+            allStudents.sort((a, b) => b.gpa - a.gpa);
+
+            // Display results
+            const resultDiv = document.getElementById('result');
+            let resultHTML = '<h2>GPA Rankings:</h2>';
+            resultHTML += '<table><tr><th>Rank</th><th>Name</th><th>GPA</th><th>Courses & Grades</th></tr>';
+
+            allStudents.forEach((student, index) => {
+                const coursesInfo = student.courses
+                    .map(course => `${course.name}: ${course.grade}`)
+                    .join('<br>');
+                
+                resultHTML += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${student.name}</td>
+                        <td>${student.gpa.toFixed(2)}</td>
+                        <td>${coursesInfo}</td>
+                    </tr>
+                `;
+            });
+
+            resultHTML += '</table>';
+            resultDiv.innerHTML = resultHTML;
+        }
+
+        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'dark') {
+                toggleSwitch.checked = true;
+                document.body.classList.add('dark-mode');
+            }
+        }
+
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }    
+        }
+
+        toggleSwitch.addEventListener('change', switchTheme, false);
+    </script>
+</body>
+</html> 

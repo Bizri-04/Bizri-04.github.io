@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Abdelghani Masad</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #2e8b57;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        header nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .dropdown {
+            display: inline-block;
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: #2e8b57;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            font-weight: bold;
+        }
+        .dropdown-content a:hover {
+            background-color: #2e8b57;
+            color: white;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .container {
+            display: flex;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 30px;
+        }
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid #2e8b57;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-right: 40px;
+        }
+        .content {
+            flex: 1;
+        }
+        h2 {
+            color: #2e8b57;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        li:hover {
+            transform: scale(1.02);
+        }
+        .section {
+            margin-top: 30px;
+        }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skill-item {
+            background-color: #2e8b57;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #2e8b57;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            position: relative;
+        }
+        footer .contact-info {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        footer p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .button {
+            background-color: #2e8b57;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #246b48;
+        }
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .dark-mode .container {
+            background-color: #2d2d2d;
+        }
+
+        .dark-mode li {
+            background-color: #3d3d3d;
+            color: #ffffff;
+        }
+
+        .dark-mode h2 {
+            color: #4CAF50;
+        }
+
+        .dark-mode p {
+            color: #ffffff;
+        }
+
+        .dark-mode .content section {
+            background-color: #2d2d2d;
+        }
+
+        /* Theme Switch Styles */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .theme-switch {
+            display: inline-block;
+            height: 34px;
+            position: relative;
+            width: 60px;
+        }
+
+        .theme-switch input {
+            display: none;
+        }
+
+        .slider {
+            background-color: #ccc;
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            background-color: #fff;
+            bottom: 4px;
+            content: "";
+            height: 26px;
+            left: 4px;
+            position: absolute;
+            transition: .4s;
+            width: 26px;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2e8b57;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .theme-switch-wrapper em {
+            margin-left: 10px;
+            font-size: 1rem;
+            color: white;
+        }
+
+        /* Additional Dark Mode Compatibility */
+        .dark-mode .dropdown-content {
+            background-color: #2d2d2d;
+        }
+
+        .dark-mode .dropdown-content a {
+            color: #ffffff;
+        }
+
+        .dark-mode .dropdown-content a:hover {
+            background-color: #2e8b57;
+            color: white;
+        }
+
+        .dark-mode .skill-item {
+            background-color: #2e8b57;
+            color: white;
+        }
+
+        .dark-mode footer {
+            background-color: #2e8b57;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="home.html">Home</a>
+            <div class="dropdown">
+                <a href="#">Portfolio ↓</a>
+                <div class="dropdown-content">
+                    <a href="mohammad.html">Mohammad Tarek</a>
+                    <a href="jamil.html">Jamil Bizri</a>
+                    <a href="abdelghani.html">Abdelghani Masad</a>
+                    <a href="ahmad.html">Ahmad Allan</a>
+                </div>
+            </div>
+            <a href="https://www.linkedin.com/in/abdelghani-masad/" target="_blank">LinkedIn</a>
+            <a href="checker.html">GPA Checker</a>
+        </nav>
+    </header>
+
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider"></div>
+        </label>
+        <em>Dark Mode</em>
+    </div>
+
+    <div class="container">
+        <img src="/img/profile.jpg" alt="Profile Picture" class="profile-pic">
+
+        <div class="content">
+            <section class="section">
+                <h2>About Me</h2>
+                <p>Hello! I'm Abdelghani Masad, a passionate IT professional and a senior computer science student at the University of Sharjah, expected to graduate in May 2025. With a strong foundation in <strong>software engineering</strong>, <strong>cloud infrastructure</strong>, and <strong>artificial intelligence</strong>. I am dedicated to building efficient, scalable solutions. My expertise spans web development, machine learning, and project management. I thrive on creating applications that enhance productivity, automate tasks, and provide data-driven insights.</p>
+            </section>
+
+            <section class="section">
+                <h2>Education</h2>
+                <ul>
+                    <li><strong>University of Sharjah</strong> - Bachelor of Science in Computer Science (Graduating May 2025)</li>
+                    <li><strong>Al Shola Private School</strong> - High School (Graduated June 2021)</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>Experience</h2>
+                <ul>
+                    <li>
+                        <strong>IT Coordinator</strong> - August 2024 - Present
+                        <p>Overseeing development of IT infrastructure, managing cloud services, and implementing digital solutions to streamline workflows. Successfully led digital transformation projects, enhanced cybersecurity measures, and provided strategic support for high-priority initiatives.</p>
+                    </li>
+                    <li>
+                        <strong>Software Engineer Intern - AI & Web Applications</strong> - Crescent Petroleum, Sharjah (May 2024 - Aug 2024)
+                        <p>Developed AI-based solutions to automate data visualization and reporting using Python, Django, and machine learning. Collaborated on internal tools for data analysis and visualization, helping employees access real-time data insights more efficiently.</p>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>Skills</h2>
+                <div class="skills">
+                    <div class="skill-item">Cloud Infrastructure (Azure and AWS)</div>
+                    <div class="skill-item">Project Management (Agile and Waterfall)</div>
+                    <div class="skill-item">Web Development (Django, HTML, JavaScript, CSS)</div>
+                    <div class="skill-item">Machine Learning & Chatbot Development</div>
+                    <div class="skill-item">Office 365 Administration</div>
+                    <div class="skill-item">Programming Languages: Python, Java, C++</div>
+                    <div class="skill-item">Database Management Systems (SQL)</div>
+                    <div class="skill-item">Data Analysis</div>
+                    </div>
+            </section>
+
+            <section class="section">
+                <h2>Projects</h2>
+                <ul>
+                    <li>
+                        <strong>Automated Data Visualization Chatbot</strong>
+                        <p>Built a chatbot leveraging LangChain, Azure Open AI, and PostgreSQL that generates on-demand graphs for project metrics. Replaces traditional data visualization tools by providing instant, automated insights without manual reporting.</p>
+                    </li>
+                    <li>
+                        <strong>Internal Data Monitoring Web Application</strong>
+                        <p>Designed a web application allowing users to select tags and time periods for data retrieval, visualizing trends using Django and KQL. Enabled real-time monitoring for employees to track key metrics over time, enhancing operational awareness.</p>
+                    </li>
+                    <li>
+                        <strong>LLM-Powered Summarization Tool</strong>
+                        <p>Developed an application using Azure OpenAI and MySQL to summarize text retrieved from the database, helping staff quickly review lengthy documents with AI-generated summaries.</p>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <div class="contact-info">
+            <p>Get in Touch:</p>
+            <p>Abdelghani Masad - Email: abed.masad2004@gmail.com | Phone: +971 50 155 4920</p>
+        </div>
+    </footer>
+
+    <script>
+        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'dark') {
+                toggleSwitch.checked = true;
+                document.body.classList.add('dark-mode');
+            }
+        }
+
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }    
+        }
+
+        toggleSwitch.addEventListener('change', switchTheme, false);
+    </script>
+</body>
+</html>

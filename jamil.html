@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Jamil Hatem</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #2e8b57;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        header nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .dropdown {
+            display: inline-block;
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: #2e8b57;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            font-weight: bold;
+        }
+        .dropdown-content a:hover {
+            background-color: #2e8b57;
+            color: white;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .container {
+            display: flex;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 30px;
+        }
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid #2e8b57;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-right: 40px;
+        }
+        .content {
+            flex: 1;
+        }
+        h2 {
+            color: #2e8b57;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        li:hover {
+            transform: scale(1.02);
+        }
+        .section {
+            margin-top: 30px;
+        }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skill-item {
+            background-color: #2e8b57;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #2e8b57;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            position: relative;
+        }
+        footer .contact-info {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        footer p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .button {
+            background-color: #2e8b57;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #246b48;
+        }
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .dark-mode .container {
+            background-color: #2d2d2d;
+        }
+
+        .dark-mode li {
+            background-color: #3d3d3d;
+            color: #ffffff;
+        }
+
+        .dark-mode h2 {
+            color: #4CAF50;
+        }
+
+        .dark-mode p {
+            color: #ffffff;
+        }
+
+        .dark-mode .content section {
+            background-color: #2d2d2d;
+        }
+
+        /* Theme Switch Styles */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .theme-switch {
+            display: inline-block;
+            height: 34px;
+            position: relative;
+            width: 60px;
+        }
+
+        .theme-switch input {
+            display: none;
+        }
+
+        .slider {
+            background-color: #ccc;
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            background-color: #fff;
+            bottom: 4px;
+            content: "";
+            height: 26px;
+            left: 4px;
+            position: absolute;
+            transition: .4s;
+            width: 26px;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2e8b57;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .theme-switch-wrapper em {
+            margin-left: 10px;
+            font-size: 1rem;
+            color: white;
+        }
+
+        /* Additional Dark Mode Compatibility */
+        .dark-mode .dropdown-content {
+            background-color: #2d2d2d;
+        }
+
+        .dark-mode .dropdown-content a {
+            color: #ffffff;
+        }
+
+        .dark-mode .dropdown-content a:hover {
+            background-color: #2e8b57;
+            color: white;
+        }
+
+        .dark-mode .skill-item {
+            background-color: #2e8b57;
+            color: white;
+        }
+
+        .dark-mode footer {
+            background-color: #2e8b57;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox" />
+                <div class="slider"></div>
+            </label>
+            <em>Dark Mode</em>
+        </div>
+        <nav>
+            <a href="home.html">Home</a>
+            <div class="dropdown">
+                <a href="#">Portfolio ↓</a>
+                <div class="dropdown-content">
+                    <a href="mohammad.html">Mohammad Tarek</a>
+                    <a href="jamil.html">Jamil Bizri</a>
+                    <a href="abdelghani.html">Abdelghani Masad</a>
+                    <a href="ahmad.html">Ahmad Allan</a>
+                </div>
+            </div>
+            <a href="https://www.linkedin.com/in/jamil-bizri/" target="_blank">LinkedIn</a>
+            <a href="checker.html">GPA Checker</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <img src="/img/jamil.jpeg" alt="Profile Picture" class="profile-pic">
+
+        <div class="content">
+            <section class="section">
+                <h2>About Me</h2>
+                <p>I'm Jamil Hatem El Bizri , a senior computer science student at the University of Sharjah, graduating in May 2025. I have a solid background in <em><strong>software engineering, machine learning, cloud computing,</strong></em> and <em><strong>database management</strong></em>. My passion lies in harnessing artificial intelligence to create innovative, scalable solutions that streamline processes and support informed decision-making. Committed to continuous learning, I strive to stay ahead in AI and emerging technologies. With expertise in web development, cloud platforms, and project management, I focus on building impactful applications that enhance efficiency and provide valuable insights.</p>
+            </section>
+
+            <section class="section">
+                <h2>Education</h2>
+                <ul>
+                    <li><strong>Dubai International School</strong> - Graduated with honors</li>
+                    <li><strong>University of Sharjah</strong> - Bachelor of Science in Computer Science </li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>Experience</h2>
+                <ul>
+                    <li>
+                        <strong>Admission's Officer</strong> - July/2023 - September/2023
+                        <p>Established connections with high school counselors to create a robust referral network for prospective applicants, enhancing outreach efforts. Delivered prompt and professional responses to inquiries via phone and email, ensuring a positive experience for potential students. Developed a streamlined system for monitoring application statuses, enabling quick access to accurate information and improving the efficiency of the application process.</p>
+                    </li>
+                    <li>
+                        <strong>Airfeild Electrical IT intern - Honeywell</strong> - Dubai Airport, UAE (July 2024 - June 2024)
+                        <p>Developed a streamlined connection between a Programmable Logic Controller (PLC) and an experimental setup to test and prepare it for deployment in the airport traffic light system. Successfully demonstrated the process of sending and receiving messages, enabling the visualization of results by turning lights ON and OFF based on specific commands. This project showcased the effective integration of hardware and software to support real-world applications.</p>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>Skills</h2>
+                <div class="skills">
+                    <div class="skill-item">Database Management using MySQL</div>
+                    <div class="skill-item">C++</div>
+                    <div class="skill-item">Java</div>
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">MySQL</div>
+                    <div class="skill-item">React</div>
+                    <div class="skill-item">HTML</div>
+                    <div class="skill-item">AI Algorithm Design</div>
+                    <div class="skill-item">UML Diagrams</div>
+                    <div class="skill-item">Basic Animation</div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2> Projects</h2>
+                <ul>
+                    <li><strong>Critical Service Deployment in Urban Areas</strong> - Designed and implemented a system to support the deployment of critical services in a local area within the UAE, ensuring efficiency and reliability.</li>
+                    <li><strong>Enhanced Digital Clock</strong> - Utilized Circuit Maker to design a digital clock with added functionalities, including a global time converter, prayer timings, timer, stopwatch, and standard time display.</li>
+                    <li><strong>Wasselly Application</strong> - Developed an innovative application using Visual Studio, similar to Talabat, which stood out at the time for offering a unique combination of groceries, medical products, and restaurant services.</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <div class="contact-info">
+            <p>Get in Touch:</p>
+            <p>Jamil Hatem - Email: U21105497@sharjah.ac.ae | Phone: +971509487049</p>
+        </div>
+    </footer>
+
+    <script>
+        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'dark') {
+                toggleSwitch.checked = true;
+                document.body.classList.add('dark-mode');
+            }
+        }
+
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }    
+        }
+
+        toggleSwitch.addEventListener('change', switchTheme, false);
+    </script>
+</body>
+</html>
